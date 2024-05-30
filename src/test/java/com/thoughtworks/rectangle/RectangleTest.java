@@ -1,21 +1,31 @@
 package com.thoughtworks.rectangle;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.closeTo;
+import static org.hamcrest.Matchers.is;
 
 import org.junit.jupiter.api.Test;
 
 public class RectangleTest {
     @Test
-    void testRectangleArea() {
-        int length = 5;
-        int breadth = 4;
-        int actualArea = 20;
+    void shouldReturnAreaWhenLengthAndBreadthIsGiven() {
+        double length = 3.0;
+        double breadth = 2.0;
+        double actualArea = 6.0;
 
         Rectangle rectangleInst = new Rectangle(length, breadth);
-        int expectedArea = rectangleInst.calculateArea();
+        double expectedArea = rectangleInst.area();
 
-        assertThat(expectedArea, equalTo(actualArea));
+        assertThat(expectedArea, is(closeTo(actualArea, 0.001)));
+    }
+
+    @Test
+    void shouldReturnPerimeterWhenLengthAndBreadthIsGiven() {
+        Rectangle rectangleInst = new Rectangle(2.5, 5.5);
+        double actualPerimeter = 16.00;
+
+        double expectedPerimeter = rectangleInst.perimeter();
+        assertThat(expectedPerimeter, is(closeTo(actualPerimeter, 0.2)));
     }
 
 }
